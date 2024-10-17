@@ -12,4 +12,3 @@ plugins {
 
 rootProject.name = "local-host-access"
 include("app")
-//include("lib")
