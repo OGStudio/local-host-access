@@ -1,4 +1,4 @@
-package org.opengamestudio
+//package org.opengamestudio
 
 class App {
     val greeting: String
