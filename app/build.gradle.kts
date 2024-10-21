@@ -19,13 +19,13 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.opengamestudio.AppKt"
+    mainClass = "org.opengamestudio.JVMAppKt"
 }
 
 // Make `jar` gradle task produce runnable jar.
 tasks.jar {
     manifest {
-        attributes["Main-Class"] = "org.opengamestudio.AppKt"
+        attributes["Main-Class"] = "org.opengamestudio.JVMAppKt"
     }
     configurations["compileClasspath"].forEach { file: File ->
         from(zipTree(file.absoluteFile))
