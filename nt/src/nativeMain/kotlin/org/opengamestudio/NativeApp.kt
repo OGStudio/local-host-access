@@ -1,14 +1,11 @@
 import org.opengamestudio.*
 
-class NativeApp {
-    val greeting: String
-        get() {
-            return "Hello World! Native"
-        }
-}
+class NativeApp { }
 
 fun main() {
-    var c = Context()
-    c.didLaunch = true
-    println(NativeApp().greeting + " didL: '${c.didLaunch}'")
+    val ctrl = ctxController(Context())
+    targetRegisterCommonPlatformFunctions(ctrl)
+    targetRegisterCommonShoulds(ctrl)
+    targetRegisterCommonSettings(ctrl)
+    ctrl.set("didLaunch", true)
 }
