@@ -19,3 +19,6 @@ Run native desktop binary:
 
 $ `./nt/build/bin/native/releaseExecutable/nt.kexe`
 
+## Notes
+
+* In case of build problems try to leave only one subproject included in settings.gradle.kts
