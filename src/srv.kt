@@ -14,8 +14,9 @@ fun srvRunHTTPServer(
 ) {
     embeddedServer(CIO, port) {
         routing {
-            get("/") {
-                call.respondText("Hello, World!")
+            get("/{path?}") {
+                val path = call.parameters["path"]
+                call.respondText("Hello, World!. Path: '$path'")
             }
         }
     }.start(wait = true)
