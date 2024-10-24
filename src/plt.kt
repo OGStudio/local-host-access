@@ -5,7 +5,7 @@ package org.opengamestudio
  * Conditions:
  * 1. Application did launch
  */
-fun printToConsole(
+fun pltPrintToConsole(
     c: Context
 ) {
     if (

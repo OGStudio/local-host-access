@@ -1,8 +1,13 @@
+val json_version: String by project
+val ktor_version: String by project
+
 plugins {
     // Support Kotlin in JVM.
     alias(libs.plugins.jvm)
     // Support for building a CLI application in Java.
     application
+    // JSON parsing.
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 repositories {
@@ -31,4 +36,10 @@ tasks.jar {
         from(zipTree(file.absoluteFile))
     }
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+dependencies {
+    implementation("io.ktor:ktor-server-core:$ktor_version")
+    implementation("io.ktor:ktor-server-cio:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$json_version")
 }

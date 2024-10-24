@@ -4,8 +4,10 @@ class NativeApp { }
 
 fun main() {
     val ctrl = ctxController(Context())
-    targetRegisterCommonPlatformFunctions(ctrl)
-    targetRegisterCommonShoulds(ctrl)
-    targetRegisterCommonSettings(ctrl)
+    trgRegisterCommonPlatformFunctions(ctrl)
+    trgRegisterCommonShoulds(ctrl)
+    trgRegisterCommonSettings(ctrl)
     ctrl.set("didLaunch", true)
+
+    srvRunHTTPServer(8080)
 }

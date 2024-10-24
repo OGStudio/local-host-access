@@ -1,6 +1,10 @@
+val json_version: String by project
+val ktor_version: String by project
+
 plugins {
-    application
     kotlin("multiplatform") version "2.0.0"
+    // JSON parsing.
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 repositories {
@@ -17,13 +21,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //implementation("io.ktor:ktor-client-core:$ktor_version")
-                //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$json_version")
             }
         }
         val nativeMain by getting {
             dependencies {
-                //implementation("io.ktor:ktor-client-curl:$ktor_version")
+                implementation("io.ktor:ktor-server-core:$ktor_version")
+                implementation("io.ktor:ktor-server-cio:$ktor_version")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$json_version")
             }
         }
     }

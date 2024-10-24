@@ -3,19 +3,19 @@ package org.opengamestudio
 /**
  * Register platform functions relevant to all targets
  */
-fun targetRegisterCommonPlatformFunctions(
+fun trgRegisterCommonPlatformFunctions(
     ctrl: ctxController
 ) {
     ctrl.registerCallback({ cc: ctxContext ->
         val c = cc as Context
-        printToConsole(c)
+        pltPrintToConsole(c)
     })
 }
 
 /**
  * Register settings relevant to all targets
  */
-fun targetRegisterCommonSettings(
+fun trgRegisterCommonSettings(
     ctrl: ctxController
 ) {
     //ctrl.set(...
@@ -24,7 +24,7 @@ fun targetRegisterCommonSettings(
 /**
  * Register behaviour relevant to all targets
  */
-fun targetRegisterCommonShoulds(
+fun trgRegisterCommonShoulds(
     ctrl: ctxController
 ) {
   /*
