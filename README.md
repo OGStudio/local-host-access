@@ -7,7 +7,7 @@ $ `./gradlew jar`
 
 Run stand-alone JAR file:
 
-$ `java -jar app/build/libs/app.jar`
+$ `./run/run-java`
 
 ## macOS host
 
@@ -17,8 +17,13 @@ $ `./gradlew nativeBinaries`
 
 Run native desktop binary:
 
-$ `./nt/build/bin/native/releaseExecutable/nt.kexe`
+$ `./run/run-native`
 
 ## Notes
 
-* In case of build problems try to leave only one subproject included in settings.gradle.kts
+* In case of build problems try to leave only one subproject included in `settings.gradle.kts` like this:
+
+```
+//include("app")
+include("nt")
+```

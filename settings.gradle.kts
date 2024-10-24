@@ -11,5 +11,5 @@ plugins {
 }
 
 rootProject.name = "local-host-access"
-include("app")
+//include("app")
 include("nt")
