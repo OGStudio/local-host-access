@@ -9,5 +9,5 @@ fun main() {
     trgRegisterCommonSettings(ctrl)
     ctrl.set("didLaunch", true)
 
-    srvRunHTTPServer(8080)
+    srvRunHTTPServer(ctrl, 8080)
 }

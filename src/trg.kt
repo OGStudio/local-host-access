@@ -27,11 +27,9 @@ fun trgRegisterCommonSettings(
 fun trgRegisterCommonShoulds(
     ctrl: ctxController
 ) {
-  /*
     arrayOf(
-        //::should??,
+        ::shouldReplyOverHTTP,
     ).forEach { f ->
         ctrl.registerFunction { c -> f(c as Context) }
     }
-    */
 }
