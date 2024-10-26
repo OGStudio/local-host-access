@@ -6,11 +6,9 @@ import io.ktor.server.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.cio.*
 
-var globalCall: ApplicationCall? = null
-
-suspend fun doReply() {
-    val path = globalCall?.parameters["path"]
-    globalCall?.respondText("Hello, World!. Path: '$path'")
+suspend fun doReply(call: ApplicationCall) {
+    val path = call.parameters["path"]
+    call.respondText("Hello, World!. Path: '$path'")
 }
 
 /**
@@ -22,11 +20,7 @@ fun srvRunHTTPServer(
     embeddedServer(CIO, port) {
         routing {
             get("/{path?}") {
-                globalCall = call
-                
-                doReply()
-                //val path = this.call.parameters["path"]
-                //call.respondText("Hello, World!. Path: '$path'")
+                doReply(call)
             }
         }
     }.start(wait = true)
