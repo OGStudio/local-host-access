@@ -25,7 +25,7 @@ fun srvRunHTTPServer(
     })
 
     // Run HTTP server.
-    embeddedServer(CIO, port) {
+    val srv: ApplicationEngine = embeddedServer(CIO, port) {
         routing {
             get("/{path?}") {
                 //doReply(call)
@@ -34,5 +34,7 @@ fun srvRunHTTPServer(
                 call.respondText(reply)
             }
         }
-    }.start(wait = true)
+    }
+    //println(srv::class.qualifiedName)
+    srv.start(wait = true)
 }

@@ -1,7 +1,7 @@
 package org.opengamestudio
 
 /**
- * Whole application state
+ * Application state
  */
 data class Context(
     /**
