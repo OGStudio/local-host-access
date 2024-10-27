@@ -8,7 +8,7 @@ fun main() {
     trgRegisterCommonPlatformFunctions(p)
     trgRegisterCommonShoulds(ctrl)
     trgRegisterCommonSettings(ctrl)
-    ctrl.set("didLaunch", true)
 
-    srvRunHTTPServer(p, 8080)
+    ctrl.set("didLaunch", true)
+    srvRunHTTPServer(p)
 }
