@@ -11,21 +11,18 @@ import io.ktor.server.request.uri
  * Run simple HTTP server
  */
 fun srvRunHTTPServer(
-    ctrl: ctxController,
+    p: Platform,
     port: Int
 ) {
-    // Keep a copy of HTTP reply.
-    var reply = ""
-    ctrl.registerFieldCallback("httpReply", { c ->
-        reply = (c as Context).httpReply
-    })
-
     // Run HTTP server.
     val srv: ApplicationEngine = embeddedServer(CIO, port) {
         routing {
             get("/{path...}") {
-                ctrl.set("httpPath", call.request.uri)
-                call.respondText(reply)
+                // The call to `httpPath` results in synchronous
+                // execution of logic that updates `p.c.httpReply`
+                // indirectly.
+                p.ctrl.set("httpPath", call.request.uri)
+                call.respondText(p.c.httpReply)
                 //println(call::class.qualifiedName)
             }
         }

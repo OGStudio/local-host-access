@@ -6,10 +6,10 @@ package org.opengamestudio
  * 1. Application did launch
  */
 fun pltPrintToConsole(
-    c: Context
+    p: Platform
 ) {
     if (
-        c.recentField == "didLaunch"
+        p.c.recentField == "didLaunch"
     ) {
         println("Local Host Access, version ?")
     }

@@ -4,10 +4,11 @@ class JVMApp { }
 
 fun main() {
     val ctrl = ctxController(Context())
-    trgRegisterCommonPlatformFunctions(ctrl)
+    val p = Platform(Context(), ctrl)
+    trgRegisterCommonPlatformFunctions(p)
     trgRegisterCommonShoulds(ctrl)
     trgRegisterCommonSettings(ctrl)
     ctrl.set("didLaunch", true)
 
-    srvRunHTTPServer(ctrl, 8080)
+    srvRunHTTPServer(p, 8080)
 }

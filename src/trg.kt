@@ -4,11 +4,12 @@ package org.opengamestudio
  * Register platform functions relevant to all targets
  */
 fun trgRegisterCommonPlatformFunctions(
-    ctrl: ctxController
+    p: Platform
 ) {
-    ctrl.registerCallback({ cc: ctxContext ->
+    p.ctrl.registerCallback({ cc: ctxContext ->
         val c = cc as Context
-        pltPrintToConsole(c)
+        p.c = c
+        pltPrintToConsole(p)
     })
 }
 
