@@ -7,9 +7,9 @@ package org.opengamestudio
  */
 fun shouldReplyOverHTTP(c: Context): Context {
     if (
-        c.recentField == "path"
+        c.recentField == "httpPath"
     ) {
-        c.httpReply = "This came from shouldROH. The path was: '${c.path}'"
+        c.httpReply = "This came from shouldROH. The path was: '${c.httpPath}'"
         c.recentField = "httpReply"
         return c
     }

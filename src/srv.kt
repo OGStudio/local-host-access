@@ -24,8 +24,7 @@ fun srvRunHTTPServer(
     val srv: ApplicationEngine = embeddedServer(CIO, port) {
         routing {
             get("/{path...}") {
-                val path = call.request.uri// ?: "N/A"
-                ctrl.set("path", path)
+                ctrl.set("httpPath", call.request.uri)
                 call.respondText(reply)
                 //println(call::class.qualifiedName)
             }
