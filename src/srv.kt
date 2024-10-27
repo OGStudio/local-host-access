@@ -5,11 +5,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.cio.*
-
-//
-//suspend fun doReply(call: ApplicationCall) { }
-//
-
+import io.ktor.server.request.uri
 
 /**
  * Run simple HTTP server
@@ -27,14 +23,13 @@ fun srvRunHTTPServer(
     // Run HTTP server.
     val srv: ApplicationEngine = embeddedServer(CIO, port) {
         routing {
-            get("/{path?}") {
-                //doReply(call)
-                val path = call.parameters["path"] ?: ""
+            get("/{path...}") {
+                val path = call.request.uri// ?: "N/A"
                 ctrl.set("path", path)
                 call.respondText(reply)
+                //println(call::class.qualifiedName)
             }
         }
     }
-    //println(srv::class.qualifiedName)
     srv.start(wait = true)
 }

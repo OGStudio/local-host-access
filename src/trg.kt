@@ -18,7 +18,7 @@ fun trgRegisterCommonPlatformFunctions(
 fun trgRegisterCommonSettings(
     ctrl: ctxController
 ) {
-    //ctrl.set(...
+    ctrl.set("httpPort", 8080)
 }
 
 /**
