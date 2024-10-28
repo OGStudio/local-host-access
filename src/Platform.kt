@@ -14,12 +14,4 @@ class Platform(
      * Controller to report logic events
      */
     var ctrl: ctxController,
-    /**
-     * Keep the latest httpReply value for use by server
-     */
-    var reply: String = "",
-    /**
-     * Running (if not null) HTTP server instance
-     */
-    var server: ApplicationEngine? = null,
 )
