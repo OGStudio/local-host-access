@@ -2,7 +2,11 @@ package org.opengamestudio
 
 class JVMApp { }
 
-fun main() {
+fun main(args: Array<String>) {
+    for (arg in args) {
+        println("arg: '$arg'")
+    }
+
     val ctrl = ctxController(Context())
     val p = Platform(Context(), ctrl)
     trgRegisterCommonPlatformFunctions(p)

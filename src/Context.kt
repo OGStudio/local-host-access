@@ -9,6 +9,10 @@ data class Context(
      */
     var didLaunch: Boolean = false,
     /**
+     * Path to local directory to work with
+     */
+    var dir: String = "",
+    /**
      * Path requested by a client
      */
     var httpPath: String = "",
@@ -25,6 +29,8 @@ data class Context(
     override fun field(name: String): Any {
         if (name == "didLaunch") {
             return didLaunch
+        } else if (name == "dir") {
+            return dir
         } else if (name == "httpPath") {
             return httpPath
         } else if (name == "httpPort") {
@@ -42,6 +48,8 @@ data class Context(
     override fun setField(name: String, value: Any) {
         if (name == "didLaunch") {
             didLaunch = value as Boolean
+        } else if (name == "dir") {
+            dir = value as String
         } else if (name == "httpPath") {
             httpPath = value as String
         } else if (name == "httpPort") {
