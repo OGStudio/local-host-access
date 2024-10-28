@@ -20,7 +20,6 @@ fun srvRunHTTPServer(p: Platform) {
                 // indirectly.
                 p.ctrl.set("httpPath", call.request.uri)
                 call.respondText(p.c.httpReply)
-                //println(call::class.qualifiedName)
             }
         }
     }
