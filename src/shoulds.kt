@@ -1,5 +1,27 @@
 package org.opengamestudio
 
+/* Should launch HTTP server
+ *
+ * Conditions:
+ * 1. Command line arguments are in
+ */
+fun shouldLaunchHTTPServer(c: Context): Context {
+    if (
+        c.recentField == "arguments" &&
+        !(
+            c.arguments.contains(ARGUMENT_HELP) ||
+            c.arguments.contains(ARGUMENT_VERSION)
+        )
+    ) {
+        c.httpLaunch = true
+        c.recentField = "httpLaunch"
+        return c
+    }
+
+    c.recentField = "none"
+    return c
+}
+
 /* Should reply over HTTP
  *
  * Conditions:

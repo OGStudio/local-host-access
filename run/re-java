@@ -1,0 +1,4 @@
+SCRIPT_DIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+$SCRIPT_DIR/../gradlew --project-dir=$SCRIPT_DIR/.. jar
+java -jar $SCRIPT_DIR/../app/build/libs/app.jar $@

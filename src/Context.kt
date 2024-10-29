@@ -5,6 +5,10 @@ package org.opengamestudio
  */
 data class Context(
     /**
+     * Command line arguments
+     */
+    var arguments: Array<String> = arrayOf<String>(),
+    /**
      * The application did finish launching
      */
     var didLaunch: Boolean = false,
@@ -12,6 +16,10 @@ data class Context(
      * Path to local directory to work with
      */
     var dir: String = "",
+    /**
+     * Launch HTTP server
+     */
+    var httpLaunch: Boolean = false,
     /**
      * Path requested by a client
      */
@@ -27,10 +35,14 @@ data class Context(
     override var recentField: String = "",
 ): ctxContext {
     override fun field(name: String): Any {
-        if (name == "didLaunch") {
+        if (name == "arguments") {
+            return arguments
+        } else if (name == "didLaunch") {
             return didLaunch
         } else if (name == "dir") {
             return dir
+        } else if (name == "httpLaunch") {
+            return httpLaunch
         } else if (name == "httpPath") {
             return httpPath
         } else if (name == "httpPort") {
@@ -46,10 +58,14 @@ data class Context(
     }
 
     override fun setField(name: String, value: Any) {
-        if (name == "didLaunch") {
+        if (name == "arguments") {
+            arguments = value as Array<String>
+        } else if (name == "didLaunch") {
             didLaunch = value as Boolean
         } else if (name == "dir") {
             dir = value as String
+        } else if (name == "httpLaunch") {
+            httpLaunch = value as Boolean
         } else if (name == "httpPath") {
             httpPath = value as String
         } else if (name == "httpPort") {

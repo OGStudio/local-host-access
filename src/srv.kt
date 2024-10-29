@@ -11,7 +11,7 @@ import io.ktor.server.request.uri
  * Run simple HTTP server
  */
 fun srvRunHTTPServer(p: Platform) {
-    // Run HTTP server.
+    // Prepare HTTP server routing.
     val srv: ApplicationEngine = embeddedServer(CIO, p.c.httpPort) {
         routing {
             get("/{path...}") {
@@ -23,5 +23,10 @@ fun srvRunHTTPServer(p: Platform) {
             }
         }
     }
-    srv.start(wait = true)
+    // Launch HTTP server if necessary.
+    if (
+        p.c.httpLaunch
+    ) {
+        srv.start(wait = true)
+    }
 }

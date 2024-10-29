@@ -1,3 +1,4 @@
+val jvm_logback_version: String by project
 val json_version: String by project
 val ktor_version: String by project
 
@@ -42,4 +43,5 @@ dependencies {
     implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-server-cio:$ktor_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$json_version")
+    implementation("ch.qos.logback:logback-classic:$jvm_logback_version")
 }
