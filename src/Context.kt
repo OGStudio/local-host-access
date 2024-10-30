@@ -21,6 +21,10 @@ data class Context(
      */
     var dir: String = "",
     /**
+     * Default HTTP port if not specified with command line arguments
+     */
+    var httpDefaultPort: Int = 0,
+    /**
      * Launch HTTP server
      */
     var httpLaunch: Boolean = false,
@@ -47,6 +51,8 @@ data class Context(
             return didLaunch
         } else if (name == "dir") {
             return dir
+        } else if (name == "httpDefaultPort") {
+            return httpDefaultPort
         } else if (name == "httpLaunch") {
             return httpLaunch
         } else if (name == "httpPath") {
@@ -72,6 +78,8 @@ data class Context(
             didLaunch = value as Boolean
         } else if (name == "dir") {
             dir = value as String
+        } else if (name == "httpDefaultPort") {
+            httpDefaultPort = value as Int
         } else if (name == "httpLaunch") {
             httpLaunch = value as Boolean
         } else if (name == "httpPath") {

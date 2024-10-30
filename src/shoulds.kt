@@ -68,3 +68,31 @@ fun shouldReplyOverHTTP(c: Context): Context {
     c.recentField = "none"
     return c
 }
+
+/* Should set HTTP port to use for listening
+ *
+ * Conditions:
+ * 1. Default port was specified
+ * 2. User port was specified with command line argument
+ */
+fun shouldResetHTTPPort(c: Context): Context {
+    if (
+        c.recentField == "httpDefaultPath"
+    ) {
+        c.httpPort = c.httpDefaultPort
+        c.recentField = "httpPort"
+        return c
+    }
+
+    if (
+        c.recentField == "arguments" &&
+        cliPort(c.arguments) > 0
+    ) {
+        c.httpPort = cliPort(c.arguments)
+        c.recentField = "httpPort"
+        return c
+    }
+
+    c.recentField = "none"
+    return c
+}

@@ -1,10 +1,16 @@
 package org.opengamestudio
 
 /**
- * See if HTTP server is expected to be launched based on arguments
+ * Extract port from command line arguments if present
  */
-fun isHTTPServerExpected(
-    args: Array<String>
-): Boolean {
+fun cliPort(args: Array<String>): Int {
+    for (arg in args) {
+        if (arg.startsWith(ARGUMENT_PORT)) {
+            val prefix = ARGUMENT_PORT + "="
+            val port = arg.substring(prefix.length).toInt()
+            return port
+        }
+    }
 
+    return 0
 }
