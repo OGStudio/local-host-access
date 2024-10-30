@@ -9,6 +9,10 @@ data class Context(
      */
     var arguments: Array<String> = arrayOf<String>(),
     /**
+     * String to print to console
+     */
+    var consoleOutput: String = "",
+    /**
      * The application did finish launching
      */
     var didLaunch: Boolean = false,
@@ -37,6 +41,8 @@ data class Context(
     override fun field(name: String): Any {
         if (name == "arguments") {
             return arguments
+        } else if (name == "consoleOutput") {
+            return consoleOutput
         } else if (name == "didLaunch") {
             return didLaunch
         } else if (name == "dir") {
@@ -60,6 +66,8 @@ data class Context(
     override fun setField(name: String, value: Any) {
         if (name == "arguments") {
             arguments = value as Array<String>
+        } else if (name == "consoleOutput") {
+            consoleOutput = value as String
         } else if (name == "didLaunch") {
             didLaunch = value as Boolean
         } else if (name == "dir") {

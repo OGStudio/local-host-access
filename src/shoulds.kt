@@ -22,6 +22,35 @@ fun shouldLaunchHTTPServer(c: Context): Context {
     return c
 }
 
+/* Should print to console
+ *
+ * Conditions:
+ * 1. Help was requested
+ * 2. Version was requested
+ */
+fun shouldPrintToConsole(c: Context): Context {
+    if (
+        c.recentField == "arguments" &&
+        c.arguments.contains(ARGUMENT_HELP)
+    ) {
+        c.consoleOutput = "Usage: TODO provide help"
+        c.recentField = "consoleOutput"
+        return c
+    }
+
+    if (
+        c.recentField == "arguments" &&
+        c.arguments.contains(ARGUMENT_VERSION)
+    ) {
+        c.consoleOutput = "local-host-access $APP_VERSION"
+        c.recentField = "consoleOutput"
+        return c
+    }
+
+    c.recentField = "none"
+    return c
+}
+
 /* Should reply over HTTP
  *
  * Conditions:
