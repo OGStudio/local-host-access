@@ -7,6 +7,7 @@ fun trgRegisterCommonPlatformFunctions(p: Platform) {
     p.ctrl.registerCallback({ cc: ctxContext ->
         val c = cc as Context
         p.c = c
+        pltDebug(p)
         pltPrintToConsole(p)
     })
 }
@@ -26,6 +27,7 @@ fun trgRegisterCommonShoulds(ctrl: ctxController) {
         ::shouldLaunchHTTPServer,
         ::shouldPrintToConsole,
         ::shouldReplyOverHTTP,
+        ::shouldResetDir,
         ::shouldResetHTTPPort,
     ).forEach { f ->
         ctrl.registerFunction { c -> f(c as Context) }

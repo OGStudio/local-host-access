@@ -69,6 +69,24 @@ fun shouldReplyOverHTTP(c: Context): Context {
     return c
 }
 
+/* Set working directory
+ *
+ * Conditions:
+ * 1. Command line arguments are in
+ */
+fun shouldResetDir(c: Context): Context {
+    if (
+        c.recentField == "arguments"
+    ) {
+        c.dir = cliDir(c.arguments)
+        c.recentField = "dir"
+        return c
+    }
+
+    c.recentField = "none"
+    return c
+}
+
 /* Should set HTTP port to use for listening
  *
  * Conditions:
