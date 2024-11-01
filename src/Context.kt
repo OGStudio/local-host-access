@@ -5,9 +5,29 @@ package org.opengamestudio
  */
 data class Context(
     /**
+     * Command line arguments
+     */
+    var arguments: Array<String> = arrayOf<String>(),
+    /**
+     * String to print to console
+     */
+    var consoleOutput: String = "",
+    /**
      * The application did finish launching
      */
     var didLaunch: Boolean = false,
+    /**
+     * Path to local directory to work with
+     */
+    var dir: String = "",
+    /**
+     * Default HTTP port if not specified with command line arguments
+     */
+    var httpDefaultPort: Int = 0,
+    /**
+     * Launch HTTP server
+     */
+    var httpLaunch: Boolean = false,
     /**
      * Path requested by a client
      */
@@ -23,8 +43,18 @@ data class Context(
     override var recentField: String = "",
 ): ctxContext {
     override fun field(name: String): Any {
-        if (name == "didLaunch") {
+        if (name == "arguments") {
+            return arguments
+        } else if (name == "consoleOutput") {
+            return consoleOutput
+        } else if (name == "didLaunch") {
             return didLaunch
+        } else if (name == "dir") {
+            return dir
+        } else if (name == "httpDefaultPort") {
+            return httpDefaultPort
+        } else if (name == "httpLaunch") {
+            return httpLaunch
         } else if (name == "httpPath") {
             return httpPath
         } else if (name == "httpPort") {
@@ -40,8 +70,18 @@ data class Context(
     }
 
     override fun setField(name: String, value: Any) {
-        if (name == "didLaunch") {
+        if (name == "arguments") {
+            arguments = value as Array<String>
+        } else if (name == "consoleOutput") {
+            consoleOutput = value as String
+        } else if (name == "didLaunch") {
             didLaunch = value as Boolean
+        } else if (name == "dir") {
+            dir = value as String
+        } else if (name == "httpDefaultPort") {
+            httpDefaultPort = value as Int
+        } else if (name == "httpLaunch") {
+            httpLaunch = value as Boolean
         } else if (name == "httpPath") {
             httpPath = value as String
         } else if (name == "httpPort") {
