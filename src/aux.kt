@@ -11,10 +11,7 @@ fun cliDir(args: Array<String>): String {
             return dir
         }
     }
-
-    // If arguments do not specify dir, set dir value to current working directory.
-    // TODO: contact plt functions?
-    return "N/A"
+    return ""
 }
 
 /**

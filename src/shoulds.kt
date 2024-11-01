@@ -95,7 +95,7 @@ fun shouldResetDir(c: Context): Context {
  */
 fun shouldResetHTTPPort(c: Context): Context {
     if (
-        c.recentField == "httpDefaultPath"
+        c.recentField == "httpDefaultPort"
     ) {
         c.httpPort = c.httpDefaultPort
         c.recentField = "httpPort"
