@@ -16,6 +16,7 @@ fun trgRegisterCommonPlatformFunctions(p: Platform) {
  * Register settings relevant to all targets
  */
 fun trgRegisterCommonSettings(ctrl: ctxController) {
+    ctrl.set("defaultDir", ".")
     ctrl.set("httpDefaultPort", 8080)
 }
 
