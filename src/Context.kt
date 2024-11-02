@@ -13,6 +13,10 @@ data class Context(
      */
     var consoleOutput: String = "",
     /**
+     * Default directory if not specified with command line arguments
+     */
+    var defaultDir: String = "",
+    /**
      * The application did finish launching
      */
     var didLaunch: Boolean = false,
@@ -47,6 +51,8 @@ data class Context(
             return arguments
         } else if (name == "consoleOutput") {
             return consoleOutput
+        } else if (name == "defaultDir") {
+            return defaultDir
         } else if (name == "didLaunch") {
             return didLaunch
         } else if (name == "dir") {
@@ -74,6 +80,8 @@ data class Context(
             arguments = value as Array<String>
         } else if (name == "consoleOutput") {
             consoleOutput = value as String
+        } else if (name == "defaultDir") {
+            defaultDir = value as String
         } else if (name == "didLaunch") {
             didLaunch = value as Boolean
         } else if (name == "dir") {
