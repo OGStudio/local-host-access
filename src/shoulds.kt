@@ -54,29 +54,50 @@ fun shouldPrintToConsole(c: Context): Context {
 /* Should reply over HTTP
  *
  * Conditions:
- * 1. Arbitrary path has been requested
+ * 0. Request has been made
+ * 1. GET /path
+ * 2. Unexpected request
  */
 fun shouldReplyOverHTTP(c: Context): Context {
     if (
-        c.recentField == "httpPath"
+        c.recentField != "httpPath"
     ) {
-        c.httpReply = "This came from shouldROH. The path was: '${c.httpPath}'"
+        c.recentField = "none"
+        return c
+    }
+
+    if (
+        c.httpPath == "/path"
+    ) {
+        c.httpReply = c.dir
         c.recentField = "httpReply"
         return c
     }
 
-    c.recentField = "none"
+    // Default reply for unexpected path.
+    c.httpReply = "TODO provide help, because requested wrong path: '${c.httpPath}'"
+    c.recentField = "httpReply"
     return c
 }
 
 /* Set working directory
  *
  * Conditions:
- * 1. Command line arguments are in
+ * 1. Default directory was specified
+ * 2. User directory was specified with command line argument
  */
 fun shouldResetDir(c: Context): Context {
     if (
-        c.recentField == "arguments"
+        c.recentField == "defaultDir"
+    ) {
+        c.dir = c.defaultDir
+        c.recentField = "dir"
+        return c
+    }
+
+    if (
+        c.recentField == "arguments" &&
+        cliDir(c.arguments).length > 0
     ) {
         c.dir = cliDir(c.arguments)
         c.recentField = "dir"
