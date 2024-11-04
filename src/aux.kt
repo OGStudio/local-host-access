@@ -1,5 +1,8 @@
 package org.opengamestudio
 
+import java.io.*
+import kotlin.io.*
+
 import io.ktor.http.*
 
 /**
@@ -35,7 +38,10 @@ fun cliPort(args: Array<String>): Int {
  * List files of the provided directory
  */
 fun fsListFiles(dir: String)/*: Array<String>*/ {
-    println("fsLF-01")
+    val list = File(dir).listFiles()
+    for (file in list) {
+        println("fsLF: '${file.name}'")
+    }
 }
 
 /**
