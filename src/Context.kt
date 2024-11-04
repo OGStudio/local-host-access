@@ -33,10 +33,6 @@ data class Context(
      */
     var httpLaunch: Boolean = false,
     /**
-     * Path requested by a client
-     */
-    var httpPath: String = "",
-    /**
      * HTTP port to listen for client requests
      */
     var httpPort: Int = 0,
@@ -44,6 +40,10 @@ data class Context(
      * Reply to deliver over HTTP to a client
      */
     var httpReply: String = "",
+    /**
+     * Client request
+     */
+    var httpRequest: NetRequest = NetRequest(),
     override var recentField: String = "",
 ): ctxContext {
     override fun field(name: String): Any {
@@ -61,12 +61,12 @@ data class Context(
             return httpDefaultPort
         } else if (name == "httpLaunch") {
             return httpLaunch
-        } else if (name == "httpPath") {
-            return httpPath
         } else if (name == "httpPort") {
             return httpPort
         } else if (name == "httpReply") {
             return httpReply
+        } else if (name == "httpRequest") {
+            return httpRequest
         }
         return "unknown-field-name"
     }
@@ -90,12 +90,12 @@ data class Context(
             httpDefaultPort = value as Int
         } else if (name == "httpLaunch") {
             httpLaunch = value as Boolean
-        } else if (name == "httpPath") {
-            httpPath = value as String
         } else if (name == "httpPort") {
             httpPort = value as Int
         } else if (name == "httpReply") {
             httpReply = value as String
+        } else if (name == "httpRequest") {
+            httpRequest = value as NetRequest
         }
     }
 }

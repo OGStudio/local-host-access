@@ -1,4 +1,8 @@
 package org.opengamestudio
+/**
+ * This file only exists to work around Ktor suspendable functions,
+ * which break simpler reactive approach by SSOTA
+ */ 
 
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -11,6 +15,28 @@ import io.ktor.server.request.receive
 import io.ktor.server.request.uri
 
 /**
+ * Process HTTP request
+ */
+suspend fun srvProcessHTTPRequest(
+    p: Platform,
+    call: ApplicationCall
+) {
+    var req = NetRequest()
+    // Path.
+    req.path = call.request.uri
+    // Method.
+    req.method = reqMethod(call.request.httpMethod)
+    req.body = call.receive<String>()
+
+    /**/println("ИГР srvPHR method/path/body: '${req.method}'/'${req.path}'/'${req.body}'")
+
+    // The call to `httpRequest` results in synchronous
+    // execution of logic that updates `httpReply` indirectly.
+    p.ctrl.set("httpRequest", req)
+    call.respondText(p.c.httpReply)
+}
+
+/**
  * Run simple HTTP server
  */
 fun srvRunHTTPServer(p: Platform) {
@@ -18,34 +44,15 @@ fun srvRunHTTPServer(p: Platform) {
     val srv: ApplicationEngine = embeddedServer(CIO, p.c.httpPort) {
         routing {
             get("/{path...}") {
-                val url = call.request.uri
-                val method = call.request.httpMethod
-                val body = ""
-
-                /**/println("ИГР GET url/method/body: '$url'/'$method'/'$body'")
-
-                // The call to `httpPath` results in synchronous
-                // execution of logic that updates `p.c.httpReply`
-                // indirectly.
-                p.ctrl.set("httpPath", call.request.uri)
-                call.respondText(p.c.httpReply)
+                srvProcessHTTPRequest(p, call)
             }
-
             post("/{path...}") {
-                val url = call.request.uri
-                val method = call.request.httpMethod
-                val body = call.receive<String>()
-                /**/println("ИГР POST url/method/body: '$url'/'$method'/'$body'")
-
-                p.ctrl.set("httpPath", call.request.uri)
-                call.respondText(p.c.httpReply)
+                srvProcessHTTPRequest(p, call)
             }
         }
     }
     // Launch HTTP server if necessary.
-    if (
-        p.c.httpLaunch
-    ) {
+    if (p.c.httpLaunch) {
         srv.start(wait = true)
     }
 }

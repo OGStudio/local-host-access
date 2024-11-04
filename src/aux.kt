@@ -1,5 +1,7 @@
 package org.opengamestudio
 
+import io.ktor.http.*
+
 /**
  * Extract dir from command line arguments or set default value
  */
@@ -27,4 +29,16 @@ fun cliPort(args: Array<String>): Int {
     }
 
     return 0
+}
+
+
+/**
+ * Convert Ktor specific method enum value to String
+ */
+fun reqMethod(m: HttpMethod): String {
+    if (m == HttpMethod.Post) {
+        return "POST"
+    }
+
+    return "GET"
 }

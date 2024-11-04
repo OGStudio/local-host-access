@@ -60,14 +60,14 @@ fun shouldPrintToConsole(c: Context): Context {
  */
 fun shouldReplyOverHTTP(c: Context): Context {
     if (
-        c.recentField != "httpPath"
+        c.recentField != "httpRequest"
     ) {
         c.recentField = "none"
         return c
     }
 
     if (
-        c.httpPath == "/path"
+        c.httpRequest.path == "/path"
     ) {
         c.httpReply = c.dir
         c.recentField = "httpReply"
@@ -75,7 +75,7 @@ fun shouldReplyOverHTTP(c: Context): Context {
     }
 
     // Default reply for unexpected path.
-    c.httpReply = "TODO provide help, because requested wrong path: '${c.httpPath}'"
+    c.httpReply = "TODO provide help, because requested wrong path: '${c.httpRequest.path}'"
     c.recentField = "httpReply"
     return c
 }
