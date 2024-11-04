@@ -31,6 +31,12 @@ fun cliPort(args: Array<String>): Int {
     return 0
 }
 
+/**
+ * List files of the provided directory
+ */
+fun fsListFiles(dir: String)/*: Array<String>*/ {
+    println("fsLF-01")
+}
 
 /**
  * Convert Ktor specific method enum value to String

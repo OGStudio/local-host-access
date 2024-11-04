@@ -56,7 +56,8 @@ fun shouldPrintToConsole(c: Context): Context {
  * Conditions:
  * 0. Request has been made
  * 1. GET /path
- * 2. Unexpected request
+ * 2. POST /list
+ * 3. Unexpected request
  */
 fun shouldReplyOverHTTP(c: Context): Context {
     if (
@@ -67,9 +68,20 @@ fun shouldReplyOverHTTP(c: Context): Context {
     }
 
     if (
+        c.httpRequest.method == "GET" &&
         c.httpRequest.path == "/path"
     ) {
         c.httpReply = c.dir
+        c.recentField = "httpReply"
+        return c
+    }
+
+    if (
+        c.httpRequest.method == "POST" &&
+        c.httpRequest.path == "/list"
+    ) {
+        fsListFiles(c.httpRequest.body)
+        c.httpReply = "TODO list files"
         c.recentField = "httpReply"
         return c
     }
