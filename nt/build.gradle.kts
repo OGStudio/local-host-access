@@ -12,7 +12,8 @@ repositories {
 }
 
 kotlin {
-    macosX64("native") {
+    //macosX64("native") {
+    mingwX64("native") {
         binaries {
             executable()
         }
