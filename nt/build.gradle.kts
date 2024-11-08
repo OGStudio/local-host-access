@@ -2,7 +2,7 @@ val json_version: String by project
 val ktor_version: String by project
 
 plugins {
-    kotlin("multiplatform") version "2.0.0"
+    kotlin("multiplatform") version "2.0.20"
     // JSON parsing.
     kotlin("plugin.serialization") version "2.0.20"
 }
