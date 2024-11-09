@@ -1,0 +1,4 @@
+# 1. Get current working dir
+curl localhost:8080/path
+# 2. Get list of files of '.'
+curl -X POST -d '.' localhost:8080/list
