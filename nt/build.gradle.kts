@@ -19,7 +19,7 @@ kotlin {
         hostOS == "Mac OS X" && hostArch == "x86_64" -> macosX64("native")
         hostOS == "Mac OS X" && hostArch == "aarch64" -> macosArm64("native")
         hostOS == "Linux" -> linuxX64("native")
-        hostOS == "Windows" && hostArch == "amd64" -> mingwX64("native")
+        hostOS.startsWith("Windows") && hostArch == "amd64" -> mingwX64("native")
         else -> throw GradleException("Unsupported host OS/arch: '$hostOS'/'$hostArch'")
     }
     nativeTarget.apply {
