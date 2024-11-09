@@ -15,6 +15,7 @@ repositories {
 }
 
 kotlin {
+    println("hostA: '${hostArch}'")
     val nativeTarget = when {
         hostOS == "Mac OS X" && hostArch == "x86_64" -> macosX64("native")
         hostOS == "Mac OS X" && hostArch == "aarch64" -> macosArm64("native")
