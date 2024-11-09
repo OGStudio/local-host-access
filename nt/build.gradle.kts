@@ -22,7 +22,7 @@ kotlin {
         hostOS == "Windows" && hostArch == "x86_64" -> mingwX64("native")
         else -> throw GradleException("Host OS+Arch is not yet supported")
     }
-    nativeTarget {
+    nativeTarget.apply {
         binaries {
             executable()
         }
