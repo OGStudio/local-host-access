@@ -41,7 +41,7 @@ suspend fun srvProcessHTTPRequest(
  */
 fun srvRunHTTPServer(p: Platform) {
     // Prepare HTTP server routing.
-    val srv: ApplicationEngine = embeddedServer(CIO, p.c.httpPort) {
+    val srv = embeddedServer(CIO, p.c.httpPort) {
         routing {
             get("/{path...}") {
                 srvProcessHTTPRequest(p, call)
