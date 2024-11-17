@@ -1,7 +1,5 @@
 package org.opengamestudio
 
-import io.ktor.server.engine.*;
-
 /**
  * Instances of application dependencies
  */
