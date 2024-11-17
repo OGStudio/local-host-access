@@ -32,6 +32,52 @@ fun cliPort(args: Array<String>): Int {
 }
 
 /**
+ * Exclude techincal files
+ */
+fun excludeTechFiles(files: Array<FSFile>): Array<FSFile> {
+    var out = arrayOf<FSFile>()
+    for (file in files) {
+        if (!isTechFileName(file.name)) {
+            out += file
+        }
+    }
+    return out
+}
+
+/**
+ * Convert list of files to json format
+ */
+fun jsonFiles(files: Array<FSFile>): String {
+    var lines = arrayOf<String>()
+    for (file in files) {
+        val type = if (file.isFile) "file" else "dir"
+        val ln = "{\"path\":\"${file.name}\",\"type\":\"$type\"}"
+        lines += ln
+    }
+    val out = "[" + lines.joinToString(",") + "]"
+    return out
+}
+
+/**
+ *
+ * Detect if a file is technical by its name:
+ * 1. "."
+ * 2. ".."
+ * 3. ".*"
+ */
+fun isTechFileName(name: String): Boolean {
+    if (
+        name == "." ||
+        name == ".." ||
+        name.startsWith(".")
+    ) {
+        return true
+    }
+
+    return false
+}
+
+/**
  * Convert Ktor specific method enum value to String
  */
 fun reqMethod(m: HttpMethod): String {

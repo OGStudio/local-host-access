@@ -80,8 +80,9 @@ fun shouldReplyOverHTTP(c: Context): Context {
         c.httpRequest.method == "POST" &&
         c.httpRequest.path == "/list"
     ) {
-        fsListFiles(c.httpRequest.body)
-        c.httpReply = "TODO list files"
+        val files1 = fsListFiles(c.httpRequest.body)
+        val files2 = excludeTechFiles(files1)
+        c.httpReply = jsonFiles(files2)
         c.recentField = "httpReply"
         return c
     }
