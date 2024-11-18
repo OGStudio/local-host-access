@@ -45,22 +45,10 @@ fun excludeTechFiles(files: Array<FSFile>): Array<FSFile> {
 }
 
 /**
- * Convert list of files to json format
- */
-fun jsonFiles(files: Array<FSFile>): String {
-    var lines = arrayOf<String>()
-    for (file in files) {
-        val type = if (file.isFile) "file" else "dir"
-        val ln = "{\"path\":\"${file.name}\",\"type\":\"$type\"}"
-        lines += ln
-    }
-    val out = "[" + lines.joinToString(",") + "]"
-    return out
-}
-
-/**
  *
- * Detect if a file is technical by its name:
+ * Detect if a file is technical
+ *
+ * Technical files names are:
  * 1. "."
  * 2. ".."
  * 3. ".*"
@@ -75,6 +63,20 @@ fun isTechFileName(name: String): Boolean {
     }
 
     return false
+}
+
+/**
+ * Convert list of files to json format
+ */
+fun jsonFiles(files: Array<FSFile>): String {
+    var lines = arrayOf<String>()
+    for (file in files) {
+        val type = if (file.isFile) "file" else "dir"
+        val ln = "{\"path\":\"${file.name}\",\"type\":\"$type\"}"
+        lines += ln
+    }
+    val out = "[" + lines.joinToString(",") + "]"
+    return out
 }
 
 /**

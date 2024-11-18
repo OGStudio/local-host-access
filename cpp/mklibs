@@ -1,0 +1,1 @@
+clang++ libs.cpp -o check-libs

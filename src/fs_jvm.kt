@@ -7,9 +7,9 @@ import java.io.*
  *
  * JVM implementation
  */
-fun fsListFiles(dir: String): Array<FSFile> {
+fun fsListFiles(path: String): Array<FSFile> {
     var items = arrayOf<FSFile>()
-    val list = File(dir).listFiles()
+    val list = File(path).listFiles()
     for (file in list) {
         val item =
             FSFile(

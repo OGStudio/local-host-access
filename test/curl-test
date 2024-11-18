@@ -5,4 +5,6 @@ PORT=8080
 curl localhost:$PORT/path
 
 # 2. Get list of files of '.'
-curl -X POST -d '.' localhost:$PORT/list
+#curl -X POST -d '.' localhost:$PORT/list
+
+curl -X POST -d '..' localhost:$PORT/list
