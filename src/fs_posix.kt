@@ -27,7 +27,13 @@ fun fsListFiles(path: String): Array<FSFile> {
                 if (entry.pointed.d_type == DT_LNK.toUByte()) {
                     println("link")
                 }
-                println("fsLF lstat: '${stat(entry.pointed.d_name.toKString(), null)}'")
+                var ret: Int = 0
+                memScoped {
+                    var st = alloc<stat>()
+
+                    ret = stat(entry.pointed.d_name.toKString(), st.ptr)
+                    println("fsLF stat: '${st.st_mode}'")
+                }
                 entry = readdir(dir)
             }
         } finally {
