@@ -32,7 +32,7 @@ fun fsListFiles(path: String): Array<FSFile> {
                     var st = alloc<stat>()
 
                     ret = stat(entry.pointed.d_name.toKString(), st.ptr)
-                    println("fsLF stat isDir: '${(st.st_mode.toInt() and S_IFMT) == S_IFDIR}'")
+                    println("fsLF stat int/isDir: '${st.st_mode}'/'${(st.st_mode.toInt() and S_IFMT) == S_IFDIR}'")
                 }
                 entry = readdir(dir)
             }
