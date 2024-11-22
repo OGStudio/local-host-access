@@ -14,7 +14,16 @@ fun shellExec(cmd: String): String {
     val buf = ByteArray(4096)
     val str = StringBuilder()
 
-    // TODO
+    if (fp == NULL) {
+        return "ERR shellExec cmd: '$cmd'"
+    }
 
+    var scan = fgets(buf.refTo(0), buf.size, fp)
+    while (scan != NULL) {
+        str.append(scan?.toKString())
+        scan = fgets(buf.refTo(0), buf.size, fp)
+    }
+
+    pclose(fp)
     return str.trim().toString()
 }

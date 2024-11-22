@@ -34,6 +34,9 @@ fun fsListFiles(path: String): Array<FSFile> {
                     ret = stat(entry.pointed.d_name.toKString(), st.ptr)
                     println("fsLF stat int/isDir: '${st.st_mode}'/'${(st.st_mode.toInt() and S_IFMT) == S_IFDIR}'")
                 }
+                val cmd = "stat -L ${entry.pointed.d_name.toKString()}"
+                val r = shellExec(cmd)
+                println("cmd/r: '$cmd'/'$r'")
                 entry = readdir(dir)
             }
         } finally {
