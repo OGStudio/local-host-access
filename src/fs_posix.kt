@@ -3,12 +3,6 @@ package org.opengamestudio
 import kotlinx.cinterop.*
 import platform.posix.*
 
-/*
-val DT_DIR: UByte = 4
-val DT_LNK: UByte = 10
-val DT_REG: UByte = 8
-*/
-
 /**
  * List files of the provided directory
  *
@@ -23,21 +17,31 @@ fun fsListFiles(path: String): Array<FSFile> {
         try {
             var entry = platform.posix.readdir(dir)
             while (entry != null) {
-                println("fsLF name/type: '${entry.pointed.d_name.toKString()}'/'${entry.pointed.d_type}'")
-                if (entry.pointed.d_type == DT_LNK.toUByte()) {
-                    println("link")
+                val fileName = entry.pointed.d_name.toKString()
+                var item =
+                    FSFile(
+                        false,
+                        false,
+                        fileName,
+                    )
+                if (entry.pointed.d_type == DT_REG.toUByte()) {
+                    // File.
+                    item.isFile = true
+                } else if (entry.pointed.d_type == DT_DIR.toUByte()) {
+                    // Directory.
+                    item.isDirectory = true
+                } else {
+                    // Unknown. Use `stat -L` to identify file type.
+                    val cmd = "stat -L $path/$fileName"
+                    val result = shellExec(cmd)
+                    if (cliStatIsDirectory(result)) {
+                        item.isDirectory = true
+                    } else {
+                        item.isFile = true
+                    }
                 }
-                var ret: Int = 0
-                memScoped {
-                    var st = alloc<stat>()
 
-                    ret = stat(entry.pointed.d_name.toKString(), st.ptr)
-                    println("fsLF stat int/isDir: '${st.st_mode}'/'${(st.st_mode.toInt() and S_IFMT) == S_IFDIR}'")
-                }
-                val fullPath = "$path/${entry.pointed.d_name.toKString()}"
-                val cmd = "stat -L $fullPath"
-                val r = shellExec(cmd)
-                println("cmd/r: '$cmd'/'$r'")
+                items += item
                 entry = readdir(dir)
             }
         } finally {

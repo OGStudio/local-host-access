@@ -32,6 +32,20 @@ fun cliPort(args: Array<String>): Int {
 }
 
 /**
+ * Extract file type from `stat` command output
+ */
+fun cliStatIsDirectory(output: String): Boolean {
+    val parts = output.split(" ")
+    if (
+        parts.size > 2 &&
+        parts[2].startsWith("d")
+    ) {
+        return true
+    }
+    return false
+}
+
+/**
  * Exclude techincal files
  */
 fun excludeTechFiles(files: Array<FSFile>): Array<FSFile> {

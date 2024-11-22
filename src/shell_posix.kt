@@ -14,12 +14,12 @@ fun shellExec(cmd: String): String {
     val buf = ByteArray(4096)
     val str = StringBuilder()
 
-    if (fp == NULL) {
+    if (fp == null) {
         return "ERR shellExec cmd: '$cmd'"
     }
 
     var scan = fgets(buf.refTo(0), buf.size, fp)
-    while (scan != NULL) {
+    while (scan != null) {
         str.append(scan?.toKString())
         scan = fgets(buf.refTo(0), buf.size, fp)
     }
