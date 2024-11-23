@@ -39,6 +39,8 @@
         <script>
             var HOST = "localhost";
             var PORT = 8080;
+            //var PORT = 8000;
+            var URL_BASE = `http://${HOST}:${PORT}`;
         </script>
         <!-- Common functions -->
         <script>
@@ -46,7 +48,8 @@
                 console.log(`DBG loadU url: '${p.url}'`);
                 let req = new XMLHttpRequest();
                 req.open(p.method, p.url);
-                req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                // This breaks CORS for text/plain
+                //req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
                 req.onload = function() {
                     if (
                         req.readyState == 4 &&
@@ -60,17 +63,19 @@
                 req.send(p.body);
             };
         </script>
+        <!-- Logic -->
         <script>
             console.log("Test");
             var testGetPath = document.getElementById("test-get-path");
+            var outputGetPath = document.getElementById("output-get-path");
             testGetPath.onclick = function() {
-              var url = `http://${HOST}:${PORT}/path`;
-              var req = {
-                  url: url,
-                  method: "GET"
+              var params = {
+                  method: "GET",
+                  url: `${URL_BASE}/path`
               };
-              loadURL(req, function(req) {
+              loadURL(params, function(req) {
                   console.log(`url/req: '${req.responseURL}'`, req);
+                  outputGetPath.innerHTML = req.responseText;
               });
             };
         </script>

@@ -33,6 +33,9 @@ suspend fun srvProcessHTTPRequest(
     // The call to `httpRequest` results in synchronous
     // execution of logic that updates `httpReply` indirectly.
     p.ctrl.set("httpRequest", req)
+    // Allow CORS.
+    call.response.header("Access-Control-Allow-Origin", "*")
+    // Send reply.
     call.respondText(p.c.httpReply)
 }
 
@@ -44,6 +47,9 @@ fun srvRunHTTPServer(p: Platform) {
     val srv = embeddedServer(CIO, p.c.httpPort) {
         routing {
             get("/{path...}") {
+                srvProcessHTTPRequest(p, call)
+            }
+            options("/{path...}") {
                 srvProcessHTTPRequest(p, call)
             }
             post("/{path...}") {

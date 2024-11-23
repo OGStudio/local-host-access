@@ -1,10 +1,10 @@
 PORT=8080
-#PORT=8000
+PORT=8000
 
 # 1. Get current working dir
-curl localhost:$PORT/path
+curl -v localhost:$PORT/path
 
 # 2. Get list of files of '.'
 #curl -X POST -d '.' localhost:$PORT/list
 
-curl -X POST -d '..' localhost:$PORT/list
+#curl -X POST -d '..' localhost:$PORT/list

@@ -97,7 +97,9 @@ fun jsonFiles(files: Array<FSFile>): String {
  * Convert Ktor specific method enum value to String
  */
 fun reqMethod(m: HttpMethod): String {
-    if (m == HttpMethod.Post) {
+    if (m == HttpMethod.Options) {
+        return "OPTIONS"
+    } else if (m == HttpMethod.Post) {
         return "POST"
     }
 

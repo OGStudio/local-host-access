@@ -68,8 +68,8 @@ fun shouldReplyOverHTTP(c: Context): Context {
     }
 
     if (
-        c.httpRequest.method == "GET" &&
         c.httpRequest.path == "/path"
+        //c.httpRequest.method == "GET"
     ) {
         c.httpReply = c.dir
         c.recentField = "httpReply"
