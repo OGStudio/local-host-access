@@ -60,6 +60,9 @@
                         console.log(`ERR loadU url/status: '${req.responseURL}'/'${req.status}'`);
                     }
                 };
+                req.onerror = function(e) {
+                    console.log("ERR loadU error:", e);
+                };
                 req.send(p.body);
             };
         </script>
