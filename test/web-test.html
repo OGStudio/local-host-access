@@ -6,14 +6,16 @@
             table, td, th {
                 border: 1px solid lightgray;
             }
+            td {
+                padding: 1em;
+            }
         </style>
     </head>
     <table>
         <thead>
             <tr>
                 <th><p>№</p></th>
-                <th><p>Command</p></th>
-                <th><p>Run test</p></th>
+                <th><p>Run command</p></th>
                 <th><p>Output</p></th>
             </tr>
         </thead>
@@ -23,13 +25,21 @@
                     <p>1</p>
                 </td>
                 <td>
-                    <p><pre>GET /path</pre></p>
-                </td>
-                <td>
-                    <p><button id="test-get-path">Test</button></p>
+                    <p><button id="test-get-path"><pre>GET /path</pre></button></p>
                 </td>
                 <td>
                     <p id="output-get-path"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>2</p>
+                </td>
+                <td>
+                    <p><button id="test-post-list"><pre>POST /list</pre></button></p>
+                </td>
+                <td>
+                    <p id="output-post-list"></p>
                 </td>
             </tr>
         </tbody>
@@ -48,7 +58,7 @@
                 console.log(`DBG loadU url: '${p.url}'`);
                 let req = new XMLHttpRequest();
                 req.open(p.method, p.url);
-                // This breaks CORS for text/plain
+                // This breaks CORS for text/plain, so don't use it.
                 //req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
                 req.onload = function() {
                     if (
@@ -66,9 +76,8 @@
                 req.send(p.body);
             };
         </script>
-        <!-- Logic -->
+        <!-- GET /path -->
         <script>
-            console.log("Test");
             var testGetPath = document.getElementById("test-get-path");
             var outputGetPath = document.getElementById("output-get-path");
             testGetPath.onclick = function() {
@@ -79,6 +88,22 @@
               loadURL(params, function(req) {
                   console.log(`url/req: '${req.responseURL}'`, req);
                   outputGetPath.innerHTML = req.responseText;
+              });
+            };
+        </script>
+        <!-- POST /list -->
+        <script>
+            var testPostList = document.getElementById("test-post-list");
+            var outputPostList = document.getElementById("output-post-list");
+            testPostList.onclick = function() {
+              var params = {
+                  body: ".",
+                  method: "POST",
+                  url: `${URL_BASE}/list`
+              };
+              loadURL(params, function(req) {
+                  console.log(`url/req: '${req.responseURL}'`, req);
+                  outputPostList.innerHTML = req.responseText;
               });
             };
         </script>
