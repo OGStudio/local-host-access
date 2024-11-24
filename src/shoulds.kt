@@ -56,26 +56,39 @@ fun shouldPrintToConsole(c: Context): Context {
  * Conditions:
  * 0. Request has been made
  * 1. GET /path
- * 2. Unexpected request
+ * 2. POST /list
+ * 3. Unexpected request
  */
 fun shouldReplyOverHTTP(c: Context): Context {
     if (
-        c.recentField != "httpPath"
+        c.recentField != "httpRequest"
     ) {
         c.recentField = "none"
         return c
     }
 
     if (
-        c.httpPath == "/path"
+        c.httpRequest.path == "/path"
+        //c.httpRequest.method == "GET"
     ) {
         c.httpReply = c.dir
         c.recentField = "httpReply"
         return c
     }
 
+    if (
+        c.httpRequest.method == "POST" &&
+        c.httpRequest.path == "/list"
+    ) {
+        val files1 = fsListFiles(c.httpRequest.body)
+        val files2 = excludeTechFiles(files1)
+        c.httpReply = jsonFiles(files2)
+        c.recentField = "httpReply"
+        return c
+    }
+
     // Default reply for unexpected path.
-    c.httpReply = "TODO provide help, because requested wrong path: '${c.httpPath}'"
+    c.httpReply = "TODO provide help, because requested wrong path: '${c.httpRequest.path}'"
     c.recentField = "httpReply"
     return c
 }

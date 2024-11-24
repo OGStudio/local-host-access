@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Local Host Access</title>
+        <style>
+            table, td, th {
+                border: 1px solid lightgray;
+            }
+            td {
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <table>
+        <thead>
+            <tr>
+                <th><p>№</p></th>
+                <th><p>Run command</p></th>
+                <th><p>Output</p></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p>1</p>
+                </td>
+                <td>
+                    <p><button id="test-get-path"><pre>GET /path</pre></button></p>
+                </td>
+                <td>
+                    <p id="output-get-path"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>2</p>
+                </td>
+                <td>
+                    <p><button id="test-post-list"><pre>POST /list</pre></button></p>
+                </td>
+                <td>
+                    <p id="output-post-list"></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <body>
+        <!-- Configuration -->
+        <script>
+            var HOST = "localhost";
+            var PORT = 8080;
+            //var PORT = 8000;
+            var URL_BASE = `http://${HOST}:${PORT}`;
+        </script>
+        <!-- Common functions -->
+        <script>
+            function loadURL(p, onload) {
+                console.log(`DBG loadU url: '${p.url}'`);
+                let req = new XMLHttpRequest();
+                req.open(p.method, p.url);
+                // This breaks CORS for text/plain, so don't use it.
+                //req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                req.onload = function() {
+                    if (
+                        req.readyState == 4 &&
+                        req.status == 200
+                    ) {
+                        onload(req);
+                    } else {
+                        console.log(`ERR loadU url/status: '${req.responseURL}'/'${req.status}'`);
+                    }
+                };
+                req.onerror = function(e) {
+                    console.log("ERR loadU error:", e);
+                };
+                req.send(p.body);
+            };
+        </script>
+        <!-- GET /path -->
+        <script>
+            var testGetPath = document.getElementById("test-get-path");
+            var outputGetPath = document.getElementById("output-get-path");
+            testGetPath.onclick = function() {
+              var params = {
+                  method: "GET",
+                  url: `${URL_BASE}/path`
+              };
+              loadURL(params, function(req) {
+                  console.log(`url/req: '${req.responseURL}'`, req);
+                  outputGetPath.innerHTML = req.responseText;
+              });
+            };
+        </script>
+        <!-- POST /list -->
+        <script>
+            var testPostList = document.getElementById("test-post-list");
+            var outputPostList = document.getElementById("output-post-list");
+            testPostList.onclick = function() {
+              var params = {
+                  body: ".",
+                  method: "POST",
+                  url: `${URL_BASE}/list`
+              };
+              loadURL(params, function(req) {
+                  console.log(`url/req: '${req.responseURL}'`, req);
+                  outputPostList.innerHTML = req.responseText;
+              });
+            };
+        </script>
+    </body>
+</html>

@@ -7,3 +7,6 @@ build
 .idea
 .kotlin
 local.properties
+
+# C++ temporary build files
+check-libs
