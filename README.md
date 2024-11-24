@@ -32,7 +32,7 @@ $ `./run/run-native`
 
 ## Notes
 
-* On POSIX hosts LHA uses `stat -L` command to detect if symbolic link points to a regular file or directory
+* On POSIX hosts native LHA variant uses `stat -L` command to detect if symbolic link points to a regular file or directory
 * In case of build problems try to leave only one subproject included in `settings.gradle.kts` like this:
 
 ```
