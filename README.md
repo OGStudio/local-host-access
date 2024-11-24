@@ -36,6 +36,6 @@ $ `./run/run-native`
 * In case of build problems try to leave only one subproject included in `settings.gradle.kts` like this:
 
 ```
-//include("app")
+//include("jvm")
 include("nt")
 ```
