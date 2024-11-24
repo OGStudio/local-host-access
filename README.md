@@ -1,4 +1,4 @@
-**Local Host Access** (LHA) is a cross-platform HTTP server
+Local Host Access (**LHA**) is a cross-platform HTTP server
 for client side JS to access local host
 
 ## Java host
