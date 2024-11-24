@@ -1,3 +1,5 @@
+*Local Host Access* (LHA) is a cross-platform HTTP server
+for client side JS to access local host
 
 ## Java host
 
@@ -30,6 +32,7 @@ $ `./run/run-native`
 
 ## Notes
 
+* On POSIX hosts LHA uses `stat -L` command to detect if symbolic link points to a regular file or directory
 * In case of build problems try to leave only one subproject included in `settings.gradle.kts` like this:
 
 ```
