@@ -92,9 +92,7 @@ fun shouldReplyOverHTTP(c: Context): Context {
         c.httpRequest.method == "POST" &&
         c.httpRequest.path == "/read"
     ) {
-        // TODO read file
-        //val files1 = fsListFiles(c.httpRequest.body)
-        c.httpReply = "TODO read file"
+        c.httpReply = fsReadFile(c.httpRequest.body)
         c.recentField = "httpReply"
         return c
     }
