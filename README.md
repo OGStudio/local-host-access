@@ -39,3 +39,4 @@ $ `./run/run-native`
 //include("jvm")
 include("nt")
 ```
+* Use `test` directory as `.` to run tests
