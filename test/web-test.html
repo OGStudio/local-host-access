@@ -42,14 +42,25 @@
                     <p id="output-post-list"></p>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p>3</p>
+                </td>
+                <td>
+                    <p><button id="test-post-read"><pre>POST /read</pre></button></p>
+                </td>
+                <td>
+                    <p id="output-post-read"></p>
+                </td>
+            </tr>
         </tbody>
     </table>
     <body>
         <!-- Configuration -->
         <script>
             var HOST = "localhost";
-            var PORT = 8080;
-            //var PORT = 8000;
+            //var PORT = 8080;
+            var PORT = 8000;
             var URL_BASE = `http://${HOST}:${PORT}`;
         </script>
         <!-- Common functions -->
@@ -104,6 +115,22 @@
               loadURL(params, function(req) {
                   console.log(`url/req: '${req.responseURL}'`, req);
                   outputPostList.innerHTML = req.responseText;
+              });
+            };
+        </script>
+        <!-- POST /read -->
+        <script>
+            var testPostRead = document.getElementById("test-post-read");
+            var outputPostRead = document.getElementById("output-post-read");
+            testPostRead.onclick = function() {
+              var params = {
+                  body: "_link-to-file",
+                  method: "POST",
+                  url: `${URL_BASE}/read`
+              };
+              loadURL(params, function(req) {
+                  console.log(`url/req: '${req.responseURL}'`, req);
+                  outputPostRead.innerHTML = req.responseText;
               });
             };
         </script>
