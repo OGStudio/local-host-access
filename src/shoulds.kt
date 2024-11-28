@@ -57,7 +57,8 @@ fun shouldPrintToConsole(c: Context): Context {
  * 0. Request has been made
  * 1. GET /path
  * 2. POST /list
- * 3. Unexpected request
+ * 3. POST /read
+ * 4. Unexpected request
  */
 fun shouldReplyOverHTTP(c: Context): Context {
     if (
@@ -68,8 +69,8 @@ fun shouldReplyOverHTTP(c: Context): Context {
     }
 
     if (
-        c.httpRequest.path == "/path"
-        //c.httpRequest.method == "GET"
+        c.httpRequest.path == "/path" &&
+        c.httpRequest.method == "GET"
     ) {
         c.httpReply = c.dir
         c.recentField = "httpReply"
@@ -83,6 +84,17 @@ fun shouldReplyOverHTTP(c: Context): Context {
         val files1 = fsListFiles(c.httpRequest.body)
         val files2 = excludeTechFiles(files1)
         c.httpReply = jsonFiles(files2)
+        c.recentField = "httpReply"
+        return c
+    }
+
+    if (
+        c.httpRequest.method == "POST" &&
+        c.httpRequest.path == "/read"
+    ) {
+        // TODO read file
+        //val files1 = fsListFiles(c.httpRequest.body)
+        c.httpReply = "TODO read file"
         c.recentField = "httpReply"
         return c
     }
