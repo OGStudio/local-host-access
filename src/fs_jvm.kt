@@ -21,3 +21,13 @@ fun fsListFiles(path: String): Array<FSFile> {
     }
     return items
 }
+
+/**
+ * Read text file
+ *
+ * JVM implementation
+ */
+fun fsReadFile(path: String): String {
+    val lines = File(path).readLines()
+    return lines.joinToString("\n")
+}

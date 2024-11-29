@@ -27,7 +27,7 @@ $ `./run/run-native`
 |---|---            |---  |---    |---    |---      |
 | 1 | `GET /path`   | √   | X     | √     | √       |
 | 2 | `POST /list`  | √   | X     | √     | X       |
-| 3 | `POST /read`  | X   | X     | X     | X       |
+| 3 | `POST /read`  | √   | X     | √     | X       |
 | 4 | `POST /write` | X   | X     | X     | X       |
 
 ## Notes
@@ -39,3 +39,16 @@ $ `./run/run-native`
 //include("jvm")
 include("nt")
 ```
+
+## Test
+
+1. Launch LHA with `test/test-dir` directory as `.`
+
+![launch-lha][launch-lha]
+
+2. Run `curl-test` or `web-test.html` to validate each function
+
+![web-test][web-test]
+
+[launch-lha]: img/01.launch-lha.jpg
+[web-test]: img/02.web-test.jpg
