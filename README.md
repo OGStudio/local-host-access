@@ -44,4 +44,4 @@ include("nt")
 
 1. Launch LHA with `test/test-dir` directory as `.`
 
-1. Run curl-test or web-test.html to validate each function
+1. Run `curl-test` or `web-test.html` to validate each function
