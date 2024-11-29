@@ -27,7 +27,7 @@ $ `./run/run-native`
 |---|---            |---  |---    |---    |---      |
 | 1 | `GET /path`   | √   | X     | √     | √       |
 | 2 | `POST /list`  | √   | X     | √     | X       |
-| 3 | `POST /read`  | √   | X     | X     | X       |
+| 3 | `POST /read`  | √   | X     | √     | X       |
 | 4 | `POST /write` | X   | X     | X     | X       |
 
 ## Notes
@@ -39,4 +39,9 @@ $ `./run/run-native`
 //include("jvm")
 include("nt")
 ```
-* Use `test` directory as `.` to run tests
+
+## Test
+
+1. Launch LHA with `test/test-dir` directory as `.`
+
+1. Run curl-test or web-test.html to validate each function

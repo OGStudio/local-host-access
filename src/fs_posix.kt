@@ -50,3 +50,30 @@ fun fsListFiles(path: String): Array<FSFile> {
     }
     return items
 }
+
+/**
+ * Read text file
+ *
+ * POSIX implementation
+ * https://www.nequalsonelifestyle.com/2020/11/16/kotlin-native-file-io/
+ * https://stackoverflow.com/a/57124947
+ */
+@OptIn(ExperimentalForeignApi::class)
+fun fsReadFile(path: String): String {
+    val fp = fopen(path, "r")
+    val buf = ByteArray(4096)
+    val str = StringBuilder()
+
+    if (fp == null) {
+        return "ERR fsReadFile path: '$path'"
+    }
+
+    var line = fgets(buf.refTo(0), buf.size, fp)
+    while (line != null) {
+        str.append(line?.toKString())
+        line = fgets(buf.refTo(0), buf.size, fp)
+    }
+
+    fclose(fp)
+    return str.toString()
+}

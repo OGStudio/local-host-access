@@ -1,5 +1,5 @@
 PORT=8080
-PORT=8000
+#PORT=8000
 
 # 1. Get current working dir
 curl -v localhost:$PORT/path
@@ -8,4 +8,4 @@ curl -v localhost:$PORT/path
 curl -X POST -d '.' localhost:$PORT/list
 
 # 3. Read `_link-to-file` file
-curl -X POST -d '_link-to-file' localhost:$PORT/read
+curl -X POST -d 'тютчев.txt' localhost:$PORT/read
