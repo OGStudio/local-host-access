@@ -48,6 +48,7 @@ include("nt")
 
 1. Run `curl-test` or `web-test.html` to validate each function
 
-![run-web-test][run-web-test]
+![web-test][web-test]
 
 [launch-lha]: img/01.launch-lha.jpg
+[web-test]: img/02.web-test.jpg
