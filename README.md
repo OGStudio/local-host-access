@@ -50,4 +50,4 @@ include("nt")
 
 ![run-web-test][run-web-test]
 
-[launch lha]: img/01.launch-lha.jpg
+[launch-lha]: img/01.launch-lha.jpg
