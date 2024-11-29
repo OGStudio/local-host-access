@@ -46,7 +46,7 @@ include("nt")
 
 ![launch-lha][launch-lha]
 
-1. Run `curl-test` or `web-test.html` to validate each function
+2. Run `curl-test` or `web-test.html` to validate each function
 
 ![web-test][web-test]
 
