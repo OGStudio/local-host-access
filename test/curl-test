@@ -1,11 +1,22 @@
-PORT=8080
-#PORT=8000
+#!/bin/bash -e
+
+#PORT=8080
+PORT=8000
+
+
 
 # 1. Get current working dir
 curl -v localhost:$PORT/path
 
-# 2. Get list of files of '.'
+# 2. List files
 curl -X POST -d '.' localhost:$PORT/list
 
-# 3. Read `_link-to-file` file
-curl -X POST -d 'тютчев.txt' localhost:$PORT/read
+# 3. Read file
+curl -X POST -d 'Тютчев.txt' localhost:$PORT/read
+
+# 4. Write file
+contents="Есть место им в полях России"
+contentsB64=$(echo -n $contents | base64)
+json="{\"path\":\"Пушкин.txt\",\"contents\":\"$contentsB64\"}"
+curl -X POST -d $json localhost:$PORT/write
+

@@ -4,6 +4,9 @@
 # Ignore Gradle build output directory
 build
 
+# Ignore test-dir temporarily generated files during testing
+test/test-dir/Пушкин.txt
+
 .idea
 .kotlin
 local.properties
