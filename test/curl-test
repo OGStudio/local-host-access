@@ -19,4 +19,3 @@ contents="Есть место им в полях России"
 contentsB64=$(echo -n $contents | base64)
 json="{\"path\":\"Пушкин.txt\",\"contents\":\"$contentsB64\"}"
 curl -X POST -d $json localhost:$PORT/write
-
