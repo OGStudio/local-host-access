@@ -1,6 +1,7 @@
 package org.opengamestudio
 
 import io.ktor.http.*
+import kotlin.io.encoding.*
 
 /**
  * Extract dir from command line arguments or set default value
@@ -91,6 +92,23 @@ fun jsonFiles(files: Array<FSFile>): String {
     }
     val out = "[" + lines.joinToString(",") + "]"
     return out
+}
+
+/**
+ * Convert JSON to dictionary with `path` and `contents`
+ *
+ * Expected JSON string: `{"path": "abc", "contents": "def"}`
+ */
+@OptIn(ExperimentalEncodingApi::class)
+fun jsonToPathContents(str: String): Map<String, String> {
+    var d = mutableMapOf<String, String>()
+    val parts = str.split("\"")
+    if (parts.size == 9) {
+        d["path"] = parts[3]
+        val contentsB64 = parts[7]
+        d["contents"] = Base64.Default.decode(contentsB64).decodeToString()
+    }
+    return d
 }
 
 /**

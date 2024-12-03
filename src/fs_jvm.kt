@@ -31,3 +31,15 @@ fun fsReadFile(path: String): String {
     val lines = File(path).readLines()
     return lines.joinToString("\n")
 }
+
+/**
+ * Write text file
+ *
+ * JVM implementation
+ */
+fun fsWriteFile(
+    path: String,
+    contents: String
+) {
+    File(path).writeText(contents)
+}
