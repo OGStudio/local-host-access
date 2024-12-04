@@ -4,6 +4,23 @@ import io.ktor.http.*
 import kotlin.io.encoding.*
 
 /**
+ * Get absolute path for file system operations
+ *
+ * Conditions:
+ * 1. Requested path is empty
+ * 2. Requested path is not empty
+ */
+fun absolutePath(
+    workingDir: String,
+    requestedPath: String
+): String {
+    if (requestedPath.isEmpty()) {
+        return workingDir
+    }
+    return "$workingDir/$requestedPath"
+}
+
+/**
  * Extract dir from command line arguments or set default value
  */
 fun cliDir(args: Array<String>): String {

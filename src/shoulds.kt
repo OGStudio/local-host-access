@@ -82,7 +82,8 @@ fun shouldReplyOverHTTP(c: Context): Context {
         c.httpRequest.path == "/list" &&
         c.httpRequest.method == "POST"
     ) {
-        val files1 = fsListFiles(c.httpRequest.body)
+        val path = absolutePath(c.dir, c.httpRequest.body)
+        val files1 = fsListFiles(path)
         val files2 = excludeTechFiles(files1)
         c.httpReply = jsonFiles(files2)
         c.recentField = "httpReply"
@@ -93,7 +94,8 @@ fun shouldReplyOverHTTP(c: Context): Context {
         c.httpRequest.path == "/read" &&
         c.httpRequest.method == "POST"
     ) {
-        c.httpReply = fsReadFile(c.httpRequest.body)
+        val path = absolutePath(c.dir, c.httpRequest.body)
+        c.httpReply = fsReadFile(path)
         c.recentField = "httpReply"
         return c
     }
@@ -103,7 +105,7 @@ fun shouldReplyOverHTTP(c: Context): Context {
         c.httpRequest.method == "POST"
     ) {
         val d = jsonToPathContents(c.httpRequest.body)
-        val path = d["path"] ?: "N/A"
+        val path = absolutePath(c.dir, d["path"] ?: "N/A")
         val contents = d["contents"] ?: "N/A"
         fsWriteFile(path, contents)
         c.httpReply = ""
