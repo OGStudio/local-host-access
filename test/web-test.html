@@ -53,6 +53,17 @@
                     <p id="output-post-read"></p>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p>4</p>
+                </td>
+                <td>
+                    <p><button id="test-post-write"><pre>POST /write</pre></button></p>
+                </td>
+                <td>
+                    <p id="output-post-write"></p>
+                </td>
+            </tr>
         </tbody>
     </table>
     <body>
@@ -63,7 +74,14 @@
             //var PORT = 8000;
             var URL_BASE = `http://${HOST}:${PORT}`;
             var BODY_LIST = ".";
-            var BODY_READ = "тютчев.txt";
+            var BODY_READ = "Тютчев.txt";
+
+            var dat = {};
+            dat["path"] = "Пушкин.txt";
+            var contents = "Есть место им в полях России";
+            var contentsB64 = btoa(unescape(encodeURIComponent(contents)));
+            dat["contents"] = contentsB64;
+            var BODY_WRITE = JSON.stringify(dat);
         </script>
         <!-- Common functions -->
         <script>
@@ -133,6 +151,22 @@
               loadURL(params, function(req) {
                   console.log(`url/req: '${req.responseURL}'`, req);
                   outputPostRead.innerHTML = req.responseText;
+              });
+            };
+        </script>
+        <!-- POST /write -->
+        <script>
+            var testPostWrite = document.getElementById("test-post-write");
+            var outputPostWrite = document.getElementById("output-post-write");
+            testPostWrite.onclick = function() {
+              var params = {
+                  body: BODY_WRITE,
+                  method: "POST",
+                  url: `${URL_BASE}/write`
+              };
+              loadURL(params, function(req) {
+                  console.log(`url/req: '${req.responseURL}'`, req);
+                  outputPostWrite.innerHTML = "Check 'Пушкин.txt' file";
               });
             };
         </script>

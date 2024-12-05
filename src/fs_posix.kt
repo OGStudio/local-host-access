@@ -77,3 +77,29 @@ fun fsReadFile(path: String): String {
     fclose(fp)
     return str.toString()
 }
+
+/**
+ * Write text file
+ *
+ * POSIX implementation
+ * https://www.nequalsonelifestyle.com/2020/11/16/kotlin-native-file-io/
+ * https://stackoverflow.com/a/57124947
+ */
+@OptIn(ExperimentalForeignApi::class)
+fun fsWriteFile(
+    path: String,
+    contents: String
+) {
+    val fp = fopen(path, "w")
+
+    if (fp == null) {
+        println("LHA-ERR fsWriteFile-1 path: '$path'")
+    }
+
+    var ok = fputs(contents, fp)
+    if (ok == EOF) {
+        println("LHA-ERR fsWriteFile-2 path: '$path'")
+    }
+
+    fclose(fp)
+}

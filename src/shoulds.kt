@@ -58,7 +58,8 @@ fun shouldPrintToConsole(c: Context): Context {
  * 1. GET /path
  * 2. POST /list
  * 3. POST /read
- * 4. Unexpected request
+ * 4. POST /write
+ * 5. Unexpected request
  */
 fun shouldReplyOverHTTP(c: Context): Context {
     if (
@@ -78,10 +79,11 @@ fun shouldReplyOverHTTP(c: Context): Context {
     }
 
     if (
-        c.httpRequest.method == "POST" &&
-        c.httpRequest.path == "/list"
+        c.httpRequest.path == "/list" &&
+        c.httpRequest.method == "POST"
     ) {
-        val files1 = fsListFiles(c.httpRequest.body)
+        val path = absolutePath(c.dir, c.httpRequest.body)
+        val files1 = fsListFiles(path)
         val files2 = excludeTechFiles(files1)
         c.httpReply = jsonFiles(files2)
         c.recentField = "httpReply"
@@ -89,10 +91,24 @@ fun shouldReplyOverHTTP(c: Context): Context {
     }
 
     if (
-        c.httpRequest.method == "POST" &&
-        c.httpRequest.path == "/read"
+        c.httpRequest.path == "/read" &&
+        c.httpRequest.method == "POST"
     ) {
-        c.httpReply = fsReadFile(c.httpRequest.body)
+        val path = absolutePath(c.dir, c.httpRequest.body)
+        c.httpReply = fsReadFile(path)
+        c.recentField = "httpReply"
+        return c
+    }
+
+    if (
+        c.httpRequest.path == "/write" &&
+        c.httpRequest.method == "POST"
+    ) {
+        val d = jsonToPathContents(c.httpRequest.body)
+        val path = absolutePath(c.dir, d["path"] ?: "N/A")
+        val contents = d["contents"] ?: "N/A"
+        fsWriteFile(path, contents)
+        c.httpReply = ""
         c.recentField = "httpReply"
         return c
     }
