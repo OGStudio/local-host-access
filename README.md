@@ -28,7 +28,7 @@ $ `./run/run-native`
 | 1 | `GET /path`   | √   | X     | √     | √       |
 | 2 | `POST /list`  | √   | X     | √     | X       |
 | 3 | `POST /read`  | √   | X     | √     | X       |
-| 4 | `POST /write` | X   | X     | X     | X       |
+| 4 | `POST /write` | √   | X     | √     | X       |
 
 ## Notes
 
