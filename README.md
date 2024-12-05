@@ -23,12 +23,12 @@ $ `./run/run-native`
 
 ## Current availability of functions
 
-| № | Function      | JVM | Linux | macOS | Windows |
-|---|---            |---  |---    |---    |---      |
-| 1 | `GET /path`   | √   | X     | √     | √       |
-| 2 | `POST /list`  | √   | X     | √     | X       |
-| 3 | `POST /read`  | √   | X     | √     | X       |
-| 4 | `POST /write` | √   | X     | √     | X       |
+| № | Function      | JVM | Linux | macOS | Windows | Android | iOS |
+|---|---            |---  |---    |---    |---      |---      |---  |
+| 1 | `GET /path`   | √   | X     | √     | √       | X       | X   |
+| 2 | `POST /list`  | √   | X     | √     | X       | X       | X   |
+| 3 | `POST /read`  | √   | X     | √     | X       | X       | X   |
+| 4 | `POST /write` | √   | X     | √     | X       | X       | X   |
 
 ## Notes
 
