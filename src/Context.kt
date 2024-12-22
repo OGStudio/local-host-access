@@ -7,7 +7,7 @@ data class Context(
     /**
      * Command line arguments
      */
-    var arguments: Array<String> = arrayOf<String>(),
+    var arguments: Array<String> = arrayOf(),
     /**
      * String to print to console
      */
