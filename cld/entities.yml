@@ -1,0 +1,42 @@
+version: 1
+
+# Application state context
+Context:
+    type: context
+    fields:
+        # Command line arguments
+        arguments: [String]
+        # String to print to console
+        consoleOutput: String
+        # Default directory if not specified with command line arguments
+        defaultDir: String
+        # The application did finish launching
+        didLaunch: Boolean
+        # Path to local directory to work with
+        dir: String
+        # Default HTTP port if not specified with command line arguments
+        httpDefaultPort: Int
+        # Launch HTTP server
+        httpLaunch: Boolean
+        # HTTP port to listen for client requests
+        httpPort: Int
+        # Reply to deliver over HTTP to the client
+        httpReply: String
+        # Client request
+        httpRequest: NetRequest
+
+# File system item representation
+FSFile:
+    type: struct
+    fields:
+        isDirectory: Boolean
+        isFile: Boolean
+        name: String
+
+# Client request representation
+NetRequest:
+    type: struct
+    fields:
+        body: String
+        method: String
+        path: String
