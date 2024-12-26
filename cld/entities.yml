@@ -11,13 +11,13 @@ Context:
         # Default directory if not specified with command line arguments
         defaultDir: String
         # The application did finish launching
-        didLaunch: Boolean
+        didLaunch: Bool
         # Path to local directory to work with
         dir: String
         # Default HTTP port if not specified with command line arguments
         httpDefaultPort: Int
         # Launch HTTP server
-        httpLaunch: Boolean
+        httpLaunch: Bool
         # HTTP port to listen for client requests
         httpPort: Int
         # Reply to deliver over HTTP to the client
@@ -29,8 +29,8 @@ Context:
 FSFile:
     type: struct
     fields:
-        isDirectory: Boolean
-        isFile: Boolean
+        isDirectory: Bool
+        isFile: Bool
         name: String
 
 # Client request representation
