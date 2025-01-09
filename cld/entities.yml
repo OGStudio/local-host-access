@@ -4,25 +4,15 @@ version: 1
 Context:
     type: context
     fields:
-        # Command line arguments
         arguments: [String]
-        # String to print to console
         consoleOutput: String
-        # Default directory if not specified with command line arguments
         defaultDir: String
-        # The application did finish launching
         didLaunch: Bool
-        # Path to local directory to work with
         dir: String
-        # Default HTTP port if not specified with command line arguments
         httpDefaultPort: Int
-        # Launch HTTP server
         httpLaunch: Bool
-        # HTTP port to listen for client requests
         httpPort: Int
-        # Reply to deliver over HTTP to the client
         httpReply: String
-        # Client request
         httpRequest: NetRequest
 
 # File system item representation
