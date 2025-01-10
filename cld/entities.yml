@@ -1,19 +1,6 @@
 version: 1
 
-# Application state context
-Context:
-    type: context
-    fields:
-        arguments: [String]
-        consoleOutput: String
-        defaultDir: String
-        didLaunch: Bool
-        dir: String
-        httpDefaultPort: Int
-        httpLaunch: Bool
-        httpPort: Int
-        httpReply: String
-        httpRequest: NetRequest
+kotlin: package org.opengamestudio
 
 # File system item representation
 FSFile:
