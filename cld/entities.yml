@@ -2,6 +2,22 @@ version: 1
 
 kotlin: package org.opengamestudio
 
+# Application state context
+Context:
+    type: context
+    fields:
+        # Command line arguments
+        arguments: [String]
+        consoleOutput: String
+        defaultDir: String
+        didLaunch: Bool
+        dir: String
+        httpDefaultPort: Int
+        httpLaunch: Bool
+        httpPort: Int
+        httpReply: String
+        httpRequest: NetRequest
+
 # File system item representation
 FSFile:
     type: struct
