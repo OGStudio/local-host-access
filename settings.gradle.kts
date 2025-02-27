@@ -19,5 +19,5 @@ plugins {
 }
 
 rootProject.name = "local-host-access"
-include("jvm")
-//include("nt")
+//include("jvm")
+include("nt")
