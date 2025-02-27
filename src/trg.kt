@@ -4,7 +4,7 @@ package org.opengamestudio
  * Register platform functions relevant to all targets
  */
 fun trgRegisterCommonPlatformFunctions(p: Platform) {
-    p.ctrl.registerCallback({ cc: ctxContext ->
+    p.ctrl.registerCallback({ cc ->
         val c = cc as Context
         p.c = c
         pltDebug(p)
@@ -15,7 +15,7 @@ fun trgRegisterCommonPlatformFunctions(p: Platform) {
 /**
  * Register settings relevant to all targets
  */
-fun trgRegisterCommonSettings(ctrl: ctxController) {
+fun trgRegisterCommonSettings(ctrl: CLDController) {
     ctrl.set("defaultDir", ".")
     ctrl.set("httpDefaultPort", 8080)
 }
@@ -23,7 +23,7 @@ fun trgRegisterCommonSettings(ctrl: ctxController) {
 /**
  * Register behaviour relevant to all targets
  */
-fun trgRegisterCommonShoulds(ctrl: ctxController) {
+fun trgRegisterCommonShoulds(ctrl: CLDController) {
     arrayOf(
         ::shouldLaunchHTTPServer,
         ::shouldPrintToConsole,

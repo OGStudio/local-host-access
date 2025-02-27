@@ -11,5 +11,5 @@ class Platform(
     /**
      * Controller to report logic events
      */
-    var ctrl: ctxController,
+    var ctrl: CLDController,
 )

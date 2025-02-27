@@ -7,7 +7,7 @@ package org.opengamestudio
  */
 fun pltDebug(p: Platform) {
     val key = p.c.recentField
-    val value = "${p.c.field(p.c.recentField)}".take(30)
+    val value = "${p.c.fieldAny(p.c.recentField)}".take(30)
     println("LHA-DBG key/value: '$key'/'$value'")
 }
 
